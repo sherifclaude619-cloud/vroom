@@ -29,4 +29,8 @@ RUN dotnet publish "StreetRacer.Api.csproj" -c Release -o /app/publish /p:UseApp
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+# Install curl for health checks
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 ENTRYPOINT ["dotnet", "StreetRacer.Api.dll"]

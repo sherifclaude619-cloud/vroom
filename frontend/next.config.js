@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   env: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000',
     NEXT_PUBLIC_KEYCLOAK_URL: process.env.NEXT_PUBLIC_KEYCLOAK_URL || 'http://localhost:8080',
@@ -9,6 +10,9 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
+  experimental: {
+    serverComponentsExternalPackages: ['@microsoft/signalr']
+  }
 }
 
 module.exports = nextConfig
